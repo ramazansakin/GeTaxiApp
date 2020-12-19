@@ -1,0 +1,32 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/userServiceFallback
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolaton:
+          thread:
+            timeoutInMilliseconds: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
