@@ -6,9 +6,3 @@ spring:
     name: CONFIG-SERVER
   profiles:
     active: local
-  cloud:
-    config:
-      server:
-        git:
-          clone-on-start: true
-          uri: https://github.com/ramazansakin/GeTaxiApp-Config-Repo
