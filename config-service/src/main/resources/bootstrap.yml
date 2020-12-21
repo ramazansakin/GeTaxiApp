@@ -16,3 +16,7 @@ management:
     web:
       exposure:
         include: '*'
+
+health:
+  config:
+    enabled: false
