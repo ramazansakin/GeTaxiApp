@@ -1,10 +1,10 @@
 spring:
   application:
     name: service-registry
-  profiles:
-    active: local
   cloud:
     config:
       enabled: true
       uri: http://localhost:8888
-      fail-fast: true
+  config:
+    activate:
+      on-profile: local

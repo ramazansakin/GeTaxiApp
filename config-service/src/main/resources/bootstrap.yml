@@ -1,7 +1,18 @@
+server:
+  port: 8888
+
 spring:
+  application:
+    name: config-server
   cloud:
     config:
       server:
         git:
-          clone-on-start: true
           uri: https://github.com/ramazansakin/GeTaxiApp-Config-Repo
+          clone-on-start: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
