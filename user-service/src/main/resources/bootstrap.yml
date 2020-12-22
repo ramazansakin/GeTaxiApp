@@ -1,3 +1,6 @@
+server:
+  port: 9001
+
 spring:
   profiles:
     active: local
@@ -7,6 +10,7 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8888
+      uri:
+        - http://localhost:8888
       retry:
         maxAttempts: 10
