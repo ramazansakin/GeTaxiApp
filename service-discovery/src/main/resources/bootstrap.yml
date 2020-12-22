@@ -1,11 +1,5 @@
 spring:
-  application:
-    name: service-registry
   cloud:
     config:
       enabled: true
-      uri:
-        - http://localhost:8888
-  config:
-    activate:
-      on-profile: local
+      uri: http://localhost:9999

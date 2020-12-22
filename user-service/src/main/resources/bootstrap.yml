@@ -1,14 +1,7 @@
-server:
-  port: 9001
-
 spring:
-  application:
-    name: user-service
-
   cloud:
     config:
       enabled: true
-      uri:
-        - http://localhost:8888
+      uri: http://localhost:9999
       retry:
         maxAttempts: 10
