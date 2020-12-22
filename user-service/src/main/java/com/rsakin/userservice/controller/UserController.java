@@ -5,7 +5,7 @@ import com.rsakin.userservice.entity.User;
 import com.rsakin.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +16,15 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RefreshScope
 @CrossOrigin("*")
 @RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
 
-    @Value("${sample.message}")
-    private String message;
-
     @GetMapping("/all")
     public ResponseEntity<List<UserDTO>> getAll() {
-        log.info("Getting property from config repo - message: " + message);
         List<UserDTO> all = userService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
