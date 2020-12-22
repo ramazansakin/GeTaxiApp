@@ -2,6 +2,7 @@ package com.rsakin.userservice.handler;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.rsakin.userservice.exception.InvalidRequestException;
+import com.rsakin.userservice.exception.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,10 +31,21 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     })
     public ResponseEntity<Map<String, String>> exception(ValidationException exception) {
         Map<String, String> response = prepareResponse(
-                exception.getCause().getMessage(),
+                exception.getMessage(),
                 "Please enter a valid entity with proper constraints",
                 HttpStatus.BAD_REQUEST.toString());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({
+            NotFoundException.class
+    })
+    public ResponseEntity<Map<String, String>> exception(NotFoundException exception) {
+        Map<String, String> response = prepareResponse(
+                exception.getMessage(),
+                "Please send a valid entity",
+                HttpStatus.NOT_FOUND.toString());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     // Generic validation error handler method
