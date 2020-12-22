@@ -23,4 +23,8 @@ public class User implements Serializable {
     private String email;
     private String password;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
 }
