@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Value("${sample.param.test:Default}")
+    @Value("${sample.message}")
     private String message;
 
     @GetMapping("/all")
