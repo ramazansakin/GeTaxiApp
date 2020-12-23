@@ -1,5 +1,6 @@
 package com.rsakin.userservice.entity;
 
+import com.rsakin.userservice.util.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     private String email;
 
     @NotNull(message = "Password can not be null")
+    @ValidPassword
     private String password;
 
     @OneToOne(cascade = CascadeType.MERGE)
