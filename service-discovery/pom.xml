@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.rsakin</groupId>
-    <artifactId>service-registery</artifactId>
+    <artifactId>service-discovery</artifactId>
     <version>1.0.0</version>
-    <name>service-registery</name>
-    <description>Service Registery with Eureka for GeTaxi App</description>
+    <name>service-discovery</name>
+    <description>Service Registry with Eureka for GeTaxi App</description>
 
     <properties>
         <java.version>1.8</java.version>

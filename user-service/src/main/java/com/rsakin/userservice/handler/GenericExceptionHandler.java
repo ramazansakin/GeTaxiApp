@@ -37,9 +37,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({
-            NotFoundException.class
-    })
+    @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Map<String, String>> exception(NotFoundException exception) {
         Map<String, String> response = prepareResponse(
                 exception.getMessage(),
