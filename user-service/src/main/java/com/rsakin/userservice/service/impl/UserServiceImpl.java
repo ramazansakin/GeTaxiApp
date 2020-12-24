@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
     }
 
+    @Cacheable(value = "users")
     @Override
     public List<UserDTO> getAll() {
         List<User> all = userRepository.findAll();
@@ -56,6 +59,7 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(byEmail, UserDTO.class);
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     @Override
     public UserDTO addOne(User user) {
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
@@ -64,6 +68,7 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(save, UserDTO.class);
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     @Override
     public UserDTO updateOne(User user) {
         // we need to check dto id or put another validation
