@@ -3,6 +3,7 @@ package com.rsakin.userservice.handler;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.rsakin.userservice.exception.InvalidRequestException;
 import com.rsakin.userservice.exception.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,28 +22,30 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Slf4j
 @ControllerAdvice
 public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({
-            ValidationException.class,
             JsonParseException.class,
             InvalidRequestException.class
     })
-    public ResponseEntity<Map<String, String>> exception(ValidationException exception) {
+    public ResponseEntity<Map<String, String>> exception(ValidationException ex) {
         Map<String, String> response = prepareResponse(
-                exception.getMessage(),
+                ex.getMessage(),
                 "Please enter a valid entity with proper constraints",
                 HttpStatus.BAD_REQUEST.toString());
+        log.info("Entity is not valid.", ex);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Map<String, String>> exception(NotFoundException exception) {
+    public ResponseEntity<Map<String, String>> exception(NotFoundException ex) {
         Map<String, String> response = prepareResponse(
-                exception.getMessage(),
+                ex.getMessage(),
                 "Please send a valid entity",
                 HttpStatus.NOT_FOUND.toString());
+        log.info("Entity not found.", ex);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
@@ -60,6 +63,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
                 (errorsMap.isEmpty() ? ex.getMessage() : errorsMap.toString()),
                 "Please enter a valid entity with proper constraints",
                 HttpStatus.BAD_REQUEST.toString());
+        log.info("Entity is not valid.", ex);
         return new ResponseEntity<>(response, status);
     }
 
@@ -70,6 +74,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
                 exception.getMessage(),
                 "Please try again later or contact with IT of bla-bla",
                 HttpStatus.INTERNAL_SERVER_ERROR.toString());
+        log.info("There is an unknown issue.", exception);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
