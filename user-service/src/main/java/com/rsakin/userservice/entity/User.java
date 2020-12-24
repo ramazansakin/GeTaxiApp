@@ -4,6 +4,7 @@ import com.rsakin.userservice.util.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -32,6 +33,7 @@ public class User implements Serializable {
     private String email;
 
     @NotNull(message = "Password can not be null")
+    @Range(min = 5, max = 15)
     @ValidPassword
     private String password;
 

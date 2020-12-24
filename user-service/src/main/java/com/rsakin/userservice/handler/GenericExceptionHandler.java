@@ -28,7 +28,8 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({
             JsonParseException.class,
-            InvalidRequestException.class
+            InvalidRequestException.class,
+            ValidationException.class
     })
     public ResponseEntity<Map<String, String>> exception(ValidationException ex) {
         Map<String, String> response = prepareResponse(

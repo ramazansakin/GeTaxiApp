@@ -2,6 +2,7 @@ package com.rsakin.userservice.service.impl;
 
 import com.rsakin.userservice.entity.Address;
 import com.rsakin.userservice.exception.AddressNotFoundException;
+import com.rsakin.userservice.exception.InvalidRequestException;
 import com.rsakin.userservice.repository.AddressRepository;
 import com.rsakin.userservice.service.AddressService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Address updateOne(Address address) {
         if (address.getId() == null)
-            throw new RuntimeException("Id must not be null for update entity");
+            throw new InvalidRequestException("Id must not be null for update entity");
         getOne(address.getId());
         return addressRepository.save(address);
     }
