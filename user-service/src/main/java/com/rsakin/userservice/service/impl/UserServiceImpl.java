@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(save, UserDTO.class);
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     @Override
     public Map<String, String> deleteOne(Integer id) {
         // check whether there is a such user or not
