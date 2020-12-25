@@ -1,10 +1,10 @@
 package com.rsakin.userservice.util;
 
+import com.rsakin.userservice.exception.NotValidPasswordException;
 import org.passay.*;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.ValidationException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,10 +39,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         // if not valid, set messages
         List<String> messages = validator.getMessages(result);
         String messageTemplate = String.join(",", messages);
-        context.buildConstraintViolationWithTemplate(messageTemplate)
-                .addConstraintViolation()
-                .disableDefaultConstraintViolation();
 
-        throw new ValidationException(messageTemplate);
+        throw new NotValidPasswordException(messageTemplate);
     }
 }

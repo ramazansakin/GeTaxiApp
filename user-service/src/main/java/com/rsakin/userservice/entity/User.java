@@ -33,7 +33,6 @@ public class User implements Serializable {
     private String email;
 
     @NotNull(message = "Password can not be null")
-    @Range(min = 5, max = 15)
     @ValidPassword
     private String password;
 

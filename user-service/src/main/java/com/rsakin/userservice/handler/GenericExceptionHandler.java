@@ -3,6 +3,7 @@ package com.rsakin.userservice.handler;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.rsakin.userservice.exception.InvalidRequestException;
 import com.rsakin.userservice.exception.NotFoundException;
+import com.rsakin.userservice.exception.NotValidPasswordException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,8 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
             JsonParseException.class,
             InvalidRequestException.class,
-            ValidationException.class
+            ValidationException.class,
+            NotValidPasswordException.class
     })
     public ResponseEntity<Map<String, String>> exception(ValidationException ex) {
         Map<String, String> response = prepareResponse(
