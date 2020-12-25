@@ -37,7 +37,7 @@ INSERT INTO users (name, lastname, username, password, address_id, email) VALUES
                                                                                     ( 'Erdem', 'Canlı', 'basic', 'samplE_12345', 3  , 'erdemm@mail.com' ),
                                                                                     ( 'Cengiz', 'Arf', 'basic', 'samplE_12345', 5  , 'cengiz@mail.com' ),
                                                                                     ( 'Ferhat', 'Tapas', 'basic', 'samplE_12345', 2  , 'ferhh@mail.com' ),
-                                                                                    ( 'Selim', 'Asaf', 'basic', 'samplE_12345', 5  , 'selim@mail.com' ),
+                                                                                    ( 'Selim', 'Asaf', 'basic', 'samplE_12345', 5  , 'selim2@mail.com' ),
                                                                                     ( 'Hekim', 'Gandas', 'basic', 'samplE_12345', 2  , 'hkm@mail.com' ),
                                                                                     ( 'Tekin', 'Karlı', 'basic', 'samplE_12345', 3  , 'tekin@mail.com' ),
                                                                                     ( 'Kamil', 'Peksimet', 'basic', 'samplE_12345', 4 , 'ridvan@mail.com' );
