@@ -32,12 +32,12 @@ INSERT INTO address ( city, street, building_no, door_no) VALUES    ( 'Malatya',
 
 
 INSERT INTO users (name, lastname, username, password, address_id, email) VALUES    ( 'Admin', 'Test', 'adminuser', 'samplE_12345', 1  , 'admin@mail.com' ),
-                                                                                    ( 'Selim', 'Canlı', 'basic', 'samplE_12345', 2  , null ),
+                                                                                    ( 'Selim', 'Canlı', 'basic', 'samplE_12345', 2  , 'selim@mail.com' ),
                                                                                     ( 'Mehmet', 'Kaya', 'basic', 'samplE_12345', 5  , 'mehmet@mail.com' ),
-                                                                                    ( 'Erdem', 'Canlı', 'basic', 'samplE_12345', 3  , null ),
+                                                                                    ( 'Erdem', 'Canlı', 'basic', 'samplE_12345', 3  , 'erdemm@mail.com' ),
                                                                                     ( 'Cengiz', 'Arf', 'basic', 'samplE_12345', 5  , 'cengiz@mail.com' ),
-                                                                                    ( 'Ferhat', 'Tapas', 'basic', 'samplE_12345', 2  , null ),
+                                                                                    ( 'Ferhat', 'Tapas', 'basic', 'samplE_12345', 2  , 'ferhh@mail.com' ),
                                                                                     ( 'Selim', 'Asaf', 'basic', 'samplE_12345', 5  , 'selim@mail.com' ),
-                                                                                    ( 'Hekim', 'Gandas', 'basic', 'samplE_12345', 2  , null ),
+                                                                                    ( 'Hekim', 'Gandas', 'basic', 'samplE_12345', 2  , 'hkm@mail.com' ),
                                                                                     ( 'Tekin', 'Karlı', 'basic', 'samplE_12345', 3  , 'tekin@mail.com' ),
                                                                                     ( 'Kamil', 'Peksimet', 'basic', 'samplE_12345', 4 , 'ridvan@mail.com' );
