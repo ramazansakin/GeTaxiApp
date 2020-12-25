@@ -1,10 +1,12 @@
 package com.rsakin.userservice.service.impl;
 
 import com.rsakin.userservice.dto.UserDTO;
+import com.rsakin.userservice.entity.Address;
 import com.rsakin.userservice.entity.User;
 import com.rsakin.userservice.exception.InvalidRequestException;
 import com.rsakin.userservice.exception.UserNotFoundException;
 import com.rsakin.userservice.repository.UserRepository;
+import com.rsakin.userservice.service.AddressService;
 import com.rsakin.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,6 +28,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    private final AddressService addressService;
 
     private ModelMapper modelMapper;
 
@@ -95,4 +99,20 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Override
+    public List<UserDTO> getUsersByAddress(Integer address_id) {
+        Address one = addressService.getOne(address_id);
+        List<User> allByAddress = userRepository.getAllByAddress(one);
+        return allByAddress.stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDTO> getUsersByAddressCityName(String city) {
+        List<User> allByAddress_city = userRepository.getAllByAddress_City(city);
+        return allByAddress_city.stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
 }

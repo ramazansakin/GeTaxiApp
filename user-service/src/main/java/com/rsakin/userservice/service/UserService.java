@@ -20,4 +20,7 @@ public interface UserService {
 
     Map<String, String> deleteOne(Integer id);
 
+    List<UserDTO> getUsersByAddress(Integer address_id);
+
+    List<UserDTO> getUsersByAddressCityName(String city);
 }
