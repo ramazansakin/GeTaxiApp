@@ -1,7 +1,4 @@
 spring:
-  profiles: local
-  application:
-    name: gateway-service
   cloud:
     config:
       enabled: true
