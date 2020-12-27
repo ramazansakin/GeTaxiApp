@@ -7,15 +7,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: user-service-routing
+          uri: http://localhost:9001
           predicates:
-            - Path=/api/user/**
+            - Path=/**
           filters:
             - name: CircuitBreaker
               args:
                 name: hystrix
                 fallbackuri: forward:/userServiceFallback
+
+jwt:
+  secret: jwt-sample-secret
 
 hystrix:
   command:
