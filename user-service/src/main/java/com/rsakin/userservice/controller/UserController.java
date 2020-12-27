@@ -73,4 +73,10 @@ public class UserController {
         List<UserDTO> usersByAddressCityName = userService.getUsersByAddressCityName(city_name);
         return new ResponseEntity<>(usersByAddressCityName, HttpStatus.OK);
     }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User> findByUsername(@PathVariable String username) {
+        User user = userService.findByUsername(username);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }
