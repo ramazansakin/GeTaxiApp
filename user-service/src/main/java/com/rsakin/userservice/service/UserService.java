@@ -23,4 +23,6 @@ public interface UserService {
     List<UserDTO> getUsersByAddress(Integer address_id);
 
     List<UserDTO> getUsersByAddressCityName(String city);
+
+    User findByUsername(String username);
 }

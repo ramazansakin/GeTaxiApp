@@ -4,6 +4,7 @@ import com.rsakin.userservice.dto.UserDTO;
 import com.rsakin.userservice.entity.Address;
 import com.rsakin.userservice.entity.User;
 import com.rsakin.userservice.exception.InvalidRequestException;
+import com.rsakin.userservice.exception.NotFoundException;
 import com.rsakin.userservice.exception.UserNotFoundException;
 import com.rsakin.userservice.repository.UserRepository;
 import com.rsakin.userservice.service.AddressService;
@@ -66,8 +67,9 @@ public class UserServiceImpl implements UserService {
     @CacheEvict(value = "users", allEntries = true)
     @Override
     public UserDTO addOne(User user) {
-        String encryptedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encryptedPassword);
+        // commented out because gateway service encode/decode the pass
+//        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(encryptedPassword);
         User save = userRepository.save(user);
         return modelMapper.map(save, UserDTO.class);
     }
@@ -110,9 +112,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getUsersByAddressCityName(String city) {
-        List<User> allByAddress_city = userRepository.getAllByAddress_City(city);
-        return allByAddress_city.stream()
+        List<User> allByAddressCity = userRepository.getAllByAddress_City(city);
+        return allByAddressCity.stream()
                 .map(user -> modelMapper.map(user, UserDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        User byUsername = userRepository.findByUsername(username);
+        if (byUsername == null)
+            throw new NotFoundException("User not found with username : " + username);
+        return byUsername;
     }
 }
